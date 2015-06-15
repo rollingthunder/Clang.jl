@@ -261,7 +261,7 @@ function repr_jl(t::ConstantArray)
 
         # Create a zero function for this type
         b = :($(symbol(typename))(fill(zero($repr), $arrsize)...))
-        zero_call = :(zero(::Type{$(symbol(typename))}) = $b)
+        zero_call = :(Base.zero(::Type{$(symbol(typename))}) = $b)
 
         context.common_buf[typesym] = ExprUnit(Any[e, zero_call])
     end
